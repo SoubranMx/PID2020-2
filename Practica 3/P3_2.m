@@ -8,8 +8,8 @@ Satelite2 = imread('Imagenes/zonaB_b5.tif');
 figure(1); imshow(Satelite1); title('Imagen Satelital 1 Original');
 figure(2); imshow(Satelite2); title('Imagen Satelital 2 Original');
 
-% Inciso A. Desplegar las imágenes satelitales cortando o eliminando las
-% zonas donde la información es nula. Desplegar además el histograma
+% Inciso A. Desplegar las imï¿½genes satelitales cortando o eliminando las
+% zonas donde la informaciï¿½n es nula. Desplegar ademï¿½s el histograma
 % correspondiente a cada una de ellas.
 
 recorteA = imcrop(Satelite1,[0 0 1761 1500]);
@@ -25,8 +25,8 @@ subplot(1,2,1); imshow(recorteB); title('Imagen Satelital 2 Recortada');
 subplot(1,2,2); plot(histB); title('Histograma 2');
 pause;
 
-% Inciso B. Desplegar el mosaico que resulta de unir las dos imágenes
-% satelitales sin el uso de la técnica de especifación del histograma.
+% Inciso B. Desplegar el mosaico que resulta de unir las dos imï¿½genes
+% satelitales sin el uso de la tï¿½cnica de especifaciï¿½n del histograma.
 
 unionB = imfuse(recorteA,recorteB,'montage');
 figure();
@@ -48,9 +48,9 @@ plot(histoABc);
 title('Histograma del traslape');
 pause;
 
-% Inciso D. Desplegar las imágenes satelitales recortadas, cuyos
+% Inciso D. Desplegar las imï¿½genes satelitales recortadas, cuyos
 % histogramas han sido especificados con el histograma del inciso anterior.
-% Desplegar además el histograma correspondiente a cada una de ellas.
+% Desplegar ademï¿½s el histograma correspondiente a cada una de ellas.
 recorteAD = histeq(recorteA,histoABc);
 recorteBD = histeq(recorteB,histoABc);
 histoAD = imhist(recorteAD);
@@ -59,45 +59,45 @@ histoBD = imhist(recorteBD);
 figure();
 subplot(1,2,1);
 imshow(recorteAD);
-title('Imagen 1 con especificación');
+title('Imagen 1 con especificaciï¿½n');
 subplot(1,2,2);
 plot(histoAD);
-title('Histograma 1 con especificación');
+title('Histograma 1 con especificaciï¿½n');
 
 figure();
 subplot(1,2,1);
 imshow(recorteBD);
-title('Imagen 2 con especificación');
+title('Imagen 2 con especificaciï¿½n');
 subplot(1,2,2);
 plot(histoBD);
-title('Histograma 2 con especificación');
+title('Histograma 2 con especificaciï¿½n');
 
 figure();
 subplot(2,2,1);
 imshow(recorteA);
-title('Imagen 1 Recortada sin especificación');
+title('Imagen 1 Recortada sin especificaciï¿½n');
 subplot(2,2,2);
 plot(histA);
 subplot(2,2,3);
 imshow(recorteAD);
-title('Imagen 1 Recortada con especificación');
+title('Imagen 1 Recortada con especificaciï¿½n');
 subplot(2,2,4);
 plot(histoAD);
 
 figure();
 subplot(2,2,1);
 imshow(recorteB);
-title('Imagen 2 Recortada sin especificación');
+title('Imagen 2 Recortada sin especificaciï¿½n');
 subplot(2,2,2);
 plot(histB);
 subplot(2,2,3);
 imshow(recorteBD);
-title('Imagen 2 Recortada con especificación');
+title('Imagen 2 Recortada con especificaciï¿½n');
 subplot(2,2,4);
 plot(histoBD);
-% Inciso E. Desplegar el mosaico que resulta de unir las dos imágenes
-% satelitales después de la especificación del histograma. Desplegar
-% también el histograma del mosaico.
+% Inciso E. Desplegar el mosaico que resulta de unir las dos imï¿½genes
+% satelitales despuï¿½s de la especificaciï¿½n del histograma. Desplegar
+% tambiï¿½n el histograma del mosaico.
 
 % Inciso F. Especificar el histograma del mosaico usando 128,64,32,16,8 y 2
-% niveles de cuantización.
+% niveles de cuantizaciï¿½n.
