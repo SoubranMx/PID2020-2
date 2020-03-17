@@ -51,8 +51,9 @@ title('Imagenes unidas sin especificacion de histograma');
 
 %ejercicio 2_c
 recorteC=imcrop(union,[1300 1 800 1800]);
-figure(7);
+figure();
 imshow(recorteC);
+figure();
 histD=imhist(recorteC);
 plot(histD);
 
