@@ -39,8 +39,11 @@ title('Imagenes unidas sin especificacion de histograma');
 pause;
 
 % Inciso C. Desplegar la zona de traslape y su histograma.
-%traslapeC = imcrop(unionB,[1548 0 400 1500]);
-traslapeC = imcrop(unionB,[1661 0 200 1500]);
+% recorteAc = imcrop(Satelite1,[910 0 1179 1500]);
+% recorteBc = imcrop(Satelite2,[910 0 1179 1500]);
+% unionABc = imfuse(recorteAc,recorteBc,'blend');
+% histoABc = imhist(unionABc);
+traslapeC = imcrop(unionB,[1548 0 400 1500]);
 histoTras = imhist(traslapeC);
 figure();
 subplot(1,2,1);
@@ -59,7 +62,22 @@ recorteBD = histeq(recorteB,histoTras);
 histoAD = imhist(recorteAD);
 histoBD = imhist(recorteBD);
 
-% Mosaico para mostrar la diferencia entre sin especificar y especificada
+figure();
+subplot(1,2,1);
+imshow(recorteAD);
+title('Imagen 1 con especificacion');
+subplot(1,2,2);
+plot(histoAD);
+title('Histograma 1 con especificacion');
+
+figure();
+subplot(1,2,1);
+imshow(recorteBD);
+title('Imagen 2 con especificacion');
+subplot(1,2,2);
+plot(histoBD);
+title('Histograma 2 con especificacion');
+
 figure();
 subplot(2,2,1);
 imshow(recorteA);
@@ -93,32 +111,7 @@ unionE = imcrop(unionE,[0 0 2500 1500]);
 histoE = imhist(unionE);
 figure();
 imshow(unionE);
+figure(
 title('Despliegue con especificacion');
-figure();
-plot(histoE);
-title('Histograma con especificacion');
-
-pause;
-
 % Inciso F. Especificar el histograma del mosaico usando 128,64,32,16,8 y 2
 % niveles de cuantizacion.
-
-niveles = 128;
-while(1)
-    histoF = imhist(unionE,niveles);
-    unionF = histeq(unionE,histoF);
-
-    figure(9);
-    subplot(1,2,1);
-    imshow(unionF);
-    title(strcat('Especificacion a ',' ',int2str(niveles),' niveles'));
-    subplot(1,2,2);
-    plot(histoF);
-    title('Histograma');
-    if(niveles ~= 2)
-        niveles = niveles/2;
-    else
-        niveles = 128;
-    end
-    pause;
-end
