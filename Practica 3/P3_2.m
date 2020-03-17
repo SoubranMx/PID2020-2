@@ -19,7 +19,7 @@ figure(2);
 imshow(Satelite2);
 title('Imagen Satelital 2 Original');
 
-% Inciso A. Recorte de imagen sin el área negra.
+% Inciso A. Recorte de imagen sin el Ã¡rea negra.
 % figure();
 recorteA = imcrop(Satelite1,[0 0 1761 1500]);
 recorteB = imcrop(Satelite2,[1229.5 0.5 1271 1500]);
@@ -46,5 +46,13 @@ union = imfuse(recorteA,recorteB,'montage');
 figure();
 imshow(union);
 title('Imagenes unidas sin especificacion de histograma');
-% Con montage, se "concatenan" dos imágenes, pero como no son del mismo
-% tamaño, añade ceros a la matriz para dejarla del mismo tamaño.
+% Con montage, se "concatenan" dos imÃ¡genes, pero como no son del mismo
+% tamaÃ±o, aÃ±ade ceros a la matriz para dejarla del mismo tamaÃ±o.
+
+%ejercicio 2_c
+recorteC=imcrop(union,[1300 1 800 1800]);
+figure(7);
+imshow(recorteC);
+histD=imhist(recorteC);
+plot(histD);
+
