@@ -25,10 +25,12 @@ title('Ecualización de la Imagen');
 subplot(2,2,4);
 plot(histEqu);
 title('Histograma de la imagen ecualizada');
+pause;
 
 % Inciso C
 niveles = 128;
-while(1);
+%while(1);
+for i=1:7
     histo = imhist(TheImage,niveles);
     ecual = histeq(TheImage,histo);
     histEcual = imhist(ecual);
@@ -46,3 +48,5 @@ while(1);
         niveles = 128;
     end
 end
+
+pause;

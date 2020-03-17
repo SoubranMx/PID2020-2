@@ -1,3 +1,94 @@
+%{
+PRACTICA 3: ECUALIZACION Y ESPECIFICACION DEL HISTOGRAMA
+Nombres:
+-Bonilla Galicia Yardiel
+correo: yardielbonilla@gmail.com
+
+-Estrada Soubran Uriel Alejandro
+correo: uriel.503p6@gmail.com
+
+-Sanchez Diaz Omar Diego
+correo: diego_omar5@hotmail.com
+
+Materia: Procesamiento de Imagenes Digitales
+
+Profesor: Dr. Boris Escalante Ramirez
+Profesor: Dra. Jimena Olveres Montiel
+
+Modo de uso:
+1. En el ejercicio 1, se abre una ventana del explorador de windows para abrir
+la imagen tipo tif o tiff.
+
+2. Para pasar de inciso en inciso, presione cualquier tecla.
+
+3. En el inciso C del ejercicio 1, la visualización de los niveles está en un
+bucle finito. Cada nivel aparece cada 2 segundos, hasta llegar al nivel 2.
+Ahí se quedará esperando una tecla para pasar al segundo ejercicio.
+
+4. En el inciso F del ejercicio 2, la visualizacion de la imagen y el
+histograma está en un bucle infinito, para pasar de niveles de cuantización
+se presiona cualquier tecla. En cuanto llega a 2, el siguiente nivel es de
+nuevo 128, por lo que el bucle se repite.
+
+5. Para salir de este bucle, basta con presionar ctrl + c dentro del Command
+Window
+%}
+
+%% EJERCICIO 1 %%
+clear variables; close all; clc;
+
+% Seleccionar una imagen tipo tif o tiff utilizando el explorador de
+% archivos.
+[filename, filepath] = uigetfile('*.tif*', 'Select a tif file');
+fullname = fullfile(filepath, filename);
+TheImage = imread(fullname);
+
+% Histograma, ecualizacion e histograma de la ecualizacion.
+imageHist = imhist(TheImage);
+imageEqu = histeq(TheImage);
+histEqu = imhist(imageEqu);
+
+% Incisos A y B
+figure(1);
+subplot(2,2,1);
+imshow(TheImage);
+title('Imagen Original');
+subplot(2,2,2);
+plot(imageHist);
+title('Histograma Original');
+subplot(2,2,3);
+imshow(imageEqu);
+title('Ecualización de la Imagen');
+subplot(2,2,4);
+plot(histEqu);
+title('Histograma de la imagen ecualizada');
+pause;
+
+% Inciso C
+niveles = 128;
+%while(1);
+for i=1:7
+    histo = imhist(TheImage,niveles);
+    ecual = histeq(TheImage,histo);
+    histEcual = imhist(ecual);
+    figure(2);
+    subplot(1,2,1);
+    imshow(ecual);
+    title(strcat('Ecualizacion a',' ',int2str(niveles),' niveles'));
+    subplot(1,2,2);
+    plot(histEcual);
+    title('Histograma');
+    pause(2);
+    if(niveles ~= 2)
+        niveles = niveles/2;
+    else
+        niveles = 128;
+    end
+end
+
+pause;
+
+%% EJERCICIO 2 %%
 clear variables; close all; clc;
 
 % Seleccionar una imagen tipo tif o tiff utilizando el explorador de
@@ -82,6 +173,7 @@ title('Imagen 2 Recortada con especificacion');
 subplot(2,2,4);
 plot(histoBD);
 
+pause;
 
 % Inciso E. Desplegar el mosaico que resulta de unir las dos imagenes
 % satelitales despues de la especificacion del histograma. Desplegar
