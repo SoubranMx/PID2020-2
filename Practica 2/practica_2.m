@@ -63,3 +63,19 @@ filtroc=reshape(filtroZ11,1,[]);
 imgcon4=cconv(ds1,filtroc,262144)
 imgcon5=reshape(imgcon4,512,512);
 figure(9);imagesc(imgcon5),axis image,colormap('gray'); title(' F.circular 11','FontSize',14);
+pause;
+close all;
+
+%ejercicio4
+
+ccirc7 = ifft2(fft2(ds).*fft2(filtroZ7));
+ccirc9 = ifft2(fft2(ds).*fft2(filtroZ9));
+ccirc11 = ifft2(fft2(ds).*fft2(filtroZ11));
+
+figure(10);imagesc(ccirc7),axis image,colormap('gray'); title('ifft2 filtro 7','FontSize',14);
+figure(11);imagesc(ccirc9),axis image,colormap('gray'); title('ifft2 filtro 9','FontSize',14);
+figure(12);imagesc(ccirc11),axis image,colormap('gray'); title('ifft2 filtro 11','FontSize',14);
+
+pause;
+close all;
+
