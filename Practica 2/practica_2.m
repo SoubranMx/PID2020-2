@@ -1,4 +1,4 @@
-clear variables; close all; clc;
+ clear variables; close all; clc;
 
 filtro7 = ones(7,7)*(1/49);
 filtro9 = ones(9,9)*(1/81);
@@ -35,29 +35,31 @@ title('FFT cambiada de ejes','FontSize',14)
 pause;
 close all;
 
-
-%ejercicio3
-ceros7x = zeros(7,249);
-ceros7y = zeros(249,256);
-ceros9x = zeros(9,247);
-ceros9y = zeros(247,256);
-ceros11x = zeros(11,245);
-ceros11y = zeros(245,256);
+%ejercicio 3
+ceros7x = zeros(7,505);
+ceros7y = zeros(505,512);
+ceros9x = zeros(9,503);
+ceros9y = zeros(503,512);
+ceros11x = zeros(11,501);
+ceros11y = zeros(501,512);
 
 filtroZ7 = [filtro7 ceros7x; ceros7y];
 filtroZ9 = [filtro9 ceros9x; ceros9y];
 filtroZ11 = [filtro11 ceros11x; ceros11y];
 
-ccirc7 = ifft2(fft2(ds).*fft2(filtroZ7));
-ccirc9 = ifft2(fft2(ds).*fft2(filtroZ9));
-ccirc11 = ifft2(fft2(ds).*fft2(filtroZ11));
+ds1=reshape(ds,[],1);
 
-figure(7);imagesc(ccirc7),axis image,colormap('gray'); title('ifft2 filtro 7','FontSize',14);
-figure(8);imagesc(ccirc9),axis image,colormap('gray'); title('ifft2 filtro 9','FontSize',14);
-figure(9);imagesc(ccirc11),axis image,colormap('gray'); title('ifft2 filtro 11','FontSize',14);
+filtroc=reshape(filtroZ7,1,[]);
+imgcon=cconv(ds1,filtroc,262144)
+imgcon1=reshape(imgcon,512,512);
+figure(7);imagesc(imgcon1),axis image,colormap('gray'); title('F.cicular 7','FontSize',14);
 
-pause;
-close all;
-%ejercicio4
+filtroc=reshape(filtroZ9,1,[]);
+imgcon2=cconv(ds1,filtroc,262144)
+imgcon3=reshape(imgcon2,512,512);
+figure(8);imagesc(imgcon3),axis image,colormap('gray'); title(' F.circular 9','FontSize',14);
 
-%ejercicio5
+filtroc=reshape(filtroZ11,1,[]);
+imgcon4=cconv(ds1,filtroc,262144)
+imgcon5=reshape(imgcon4,512,512);
+figure(9);imagesc(imgcon5),axis image,colormap('gray'); title(' F.circular 11','FontSize',14);
