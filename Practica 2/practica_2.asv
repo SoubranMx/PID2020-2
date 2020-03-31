@@ -37,27 +37,18 @@ close all;
 
 
 %ejercicio3
+ceros1 = zeros(7, 249);
+ceros2 = zeros(249, 256);
 ceros7x = zeros(7,249);
 ceros7y = zeros(249,256);
-ceros9x = zeros(9,247);
-ceros9y = zeros(247,256);
-ceros11x = zeros(11,245);
-ceros11y = zeros(245,256);
-
 filtroZ7 = [filtro7 ceros7x; ceros7y];
-filtroZ9 = [filtro9 ceros9x; ceros9y];
-filtroZ11 = [filtro11 ceros11x; ceros11y];
-
-ccirc7 = ifft2(fft2(ds).*fft2(filtroZ7));
-ccirc9 = ifft2(fft2(ds).*fft2(filtroZ9));
-ccirc11 = ifft2(fft2(ds).*fft2(filtroZ11));
-
+filtroZ9 = [filtro9 ceros1; ceros2];
+filtroZ11 = [filtro11 ceros1; ceros2];
+ccirc = ifft2(fft2(ds).*fft2(filtroZ));
+figure(7);imagesc(ccirc),axis image,colormap('gray');
+ccirc7 = ifft2(fft2(ds).*fft2(filtro7));
+ccirc9 = ifft2(fft2(ds).*fft2(filtro9));
+ccirc11 = ifft2(fft2(ds).*fft2(filtro11));
 figure(7);imagesc(ccirc7),axis image,colormap('gray'); title('ifft2 filtro 7','FontSize',14);
-figure(8);imagesc(ccirc9),axis image,colormap('gray'); title('ifft2 filtro 9','FontSize',14);
-figure(9);imagesc(ccirc11),axis image,colormap('gray'); title('ifft2 filtro 11','FontSize',14);
-
-pause;
-close all;
-%ejercicio4
-
-%ejercicio5
+figure(7);imagesc(ccirc9),axis image,colormap('gray'); title('ifft2 filtro 9','FontSize',14);
+figure(7);imagesc(ccirc11),axis image,colormap('gray'); title('ifft2 filtro 11','FontSize',14);
