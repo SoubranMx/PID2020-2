@@ -273,24 +273,6 @@ axis image;
 colormap('gray');
 title('Imagen prewitt');
 pause;
-
-prewitX = conv2(original, Arregloprewx);
-prewitY = conv2(original, Arregloprewy);
-figure(12);
-subplot(1,3,1);
-image(original);
-colormap('gray');
-title('Original');
-subplot(1,3,2);
-image(prewitX);
-colormap('gray');
-title('Prewitt X');
-subplot(1,3,3);
-image(prewitY);
-colormap('gray');
-title('Prewitt Y');
-pause;
-
 %ejercicio 4-c
 
 
@@ -306,23 +288,12 @@ axis image;
 colormap('gray');
 title('Imagen sobel');
 pause;
-
 sobelX = conv2(original, Arreglosobelx);
 sobelY = conv2(original, Arreglosobely);
 figure(13);
-subplot(1,3,1);
-image(original);
-colormap('gray');
-title('Original');
-subplot(1,3,2);
-image(sobelX);
-colormap('gray');
-title('Sobel X');
-subplot(1,3,3);
-image(sobelY);
-colormap('gray');
-title('Sobel Y');
-pause;
+subplot(1,2,1);
+image
+
 
 %% ejercicio 5-a
 %clear variables; close all; clc;
