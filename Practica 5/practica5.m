@@ -69,7 +69,43 @@ imagenISC4=conv2(sobremuesCon2,ISC)
 subplot(1, 3, 3);
 imagesc(imagenISC4);
 axis image;
-colormap('gray');
+colormap('gray');%% interpolacion de orden lineal 
+%% parte b 
+pentagono = imread("pentagon256x256.tif");
+
+% Sobremuestreo de la imagen
+sobremuesCon2 = imrotate(upsample(imrotate(upsample(pentagono, 2), 270), 2), -270);
+sobremuesCon4 = imrotate(upsample(imrotate(upsample(pentagono, 4), 270), 4), -270); 
+
+F = griddedInterpolant(double(sobremuesCon2));
+[sx,sy] = size(sobremuesCon2);
+xq = (0:5/6:sx)';
+yq = (0:5/6:sy)';
+vq = uint8(F({xq,yq}));
+figure
+imshow(vq)
+title('Higher Resolution')
+figure
+imshow(sobremuesCon2,'InitialMagnification','fit')
+zoom(10)
+title('Original Image, 10x Zoom')
+
+figure
+F.Method = 'linear';
+vq = uint8(F({xq,yq}));
+imshow(vq,'InitialMagnification','fit')
+zoom(10)
+title('Metodo Lineal ')
+
+figure
+F.Method = 'cubic';
+vq = uint8(F({xq,yq}));
+imshow(vq,'InitialMagnification','fit')
+zoom(10)
+title('Metodo Cubico')
+
+
+
 %% Sección del tercer ejercicio de la práctica 5
 
 % Despliegue del DFT de la imagen original
