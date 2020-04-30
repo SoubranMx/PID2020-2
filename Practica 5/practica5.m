@@ -1,4 +1,4 @@
-%% Sección del primer ejercicio de la práctica 5
+%% SecciÃ³n del primer ejercicio de la prÃ¡ctica 5
 clear variables; close all; clc;
 
 % Se declara la imagen
@@ -47,9 +47,30 @@ axis image;
 colormap('gray');
 title('DFT de sobremuestreo con T = 4');
 
-%% Sección del segundo ejercicio de la práctica 5
+%% SecciÃ³n del segundo ejercicio de la prÃ¡ctica 5
+pentagono = imread("pentagon256x256.tif");
 
-%% Sección del tercer ejercicio de la práctica 5
+% Sobremuestreo de la imagen
+sobremuesCon2 = imrotate(upsample(imrotate(upsample(pentagono, 2), 270), 2), -270);
+sobremuesCon4 = imrotate(upsample(imrotate(upsample(pentagono, 4), 270), 4), -270); 
+ISC= ones(2,2)
+imagenISC2 = conv2(sobremuesCon2,ISC);
+figure(10);
+subplot(1, 3, 1);
+imagesc(pentagono);
+axis image;
+colormap('gray');
+title('Imagen original');
+subplot(1, 3, 2);
+imagesc(imagenISC2);
+axis image;
+colormap('gray');
+imagenISC4=conv2(sobremuesCon2,ISC)
+subplot(1, 3, 3);
+imagesc(imagenISC4);
+axis image;
+colormap('gray');
+%% SecciÃ³n del tercer ejercicio de la prÃ¡ctica 5
 
 % Despliegue del DFT de la imagen original
 figure(3);
